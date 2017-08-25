@@ -27,6 +27,8 @@ class NightWriter
     end
   end
 
+  
+
 
 
   def count_output_characters
