@@ -5,12 +5,10 @@ class NightWriter
               :output_line_2,
               :output_line_3
   def initialize
-    @raw_input = raw_input
-
+    @raw_input = ""
     @output_line_1 = ""
     @output_line_2 = ""
     @output_line_3 = ""
-    # @file = ARGV[0]
   end
 
   def open_file
