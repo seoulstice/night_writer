@@ -17,7 +17,7 @@ class NightWriter
     @file_contents = File.open(file)
   end
 
-  def parse_contents_to_string
+  def parse_file_contents_to_string
     file_contents.each do |line|
       if raw_input == ""
         raw_input << line.rstrip
