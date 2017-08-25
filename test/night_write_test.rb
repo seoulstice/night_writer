@@ -19,6 +19,7 @@ binding.pry
   end
 
   def test_it_can_open_file
+    skip
     nw = NightWriter.new
     nw.open_file
     nw.parse_contents_to_string
