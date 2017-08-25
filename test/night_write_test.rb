@@ -7,7 +7,7 @@ class NightWriterTest < Minitest::Test
 
   def test_night_writer_exists
     nw = NightWriter.new
-
+binding.pry
     assert_instance_of NightWriter, nw
   end
 
@@ -24,7 +24,7 @@ class NightWriterTest < Minitest::Test
     nw.parse_contents_to_string
 
     assert_equal "Hello, World!", nw.raw_input
-  end
+  end 
 
   def test_it_can_count_characters_of_output
     skip
