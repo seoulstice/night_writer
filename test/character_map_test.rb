@@ -11,7 +11,7 @@ class CharacterMapTest < Minitest::Test
     assert_instance_of CharacterMap, cm
   end
 
-  def test_character_map_has_characters
+  def test_character_map_class_has_characters
     cm = CharacterMap.new
 
     assert_instance_of Hash, cm.characters

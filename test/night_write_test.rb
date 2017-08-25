@@ -7,7 +7,7 @@ class NightWriterTest < Minitest::Test
 
   def test_night_writer_exists
     nw = NightWriter.new
-binding.pry 
+
     assert_instance_of NightWriter, nw
   end
 

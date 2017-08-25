@@ -1,8 +1,8 @@
 
 class CharacterMap
-  attr_reader :characters 
+  attr_reader :characters
   def initialize
-    @characters = { "a" => ["0.", "..", ".."],
+    @characters = {"a" => ["0.", "..", ".."],
                   "b" => ["0.", "0.", ".."],
                   "c" => ["00", "..", ".."],
                   "d" => ["00", ".0", ".."],
