@@ -1,11 +1,11 @@
 
 class NightWriter
-  attr_reader :raw_input,
+  attr_reader :raw_message,
               :output_line_1,
               :output_line_2,
               :output_line_3
   def initialize
-    @raw_input = ""
+    @raw_message = ""
     @input = ""
     @output_line_1 = ""
     @output_line_2 = ""
@@ -13,9 +13,9 @@ class NightWriter
   end
 
   def open_file
-    input_file = File.open(ARGV[0], "r")
-    @raw_input = input_file.read
-    input_file.close
+    message_file = File.open(ARGV[0], "r")
+    @raw_message = message_file.read
+    message_file.close
   end
 
   def write_file
@@ -25,8 +25,8 @@ class NightWriter
   end
 
   def parse_file_contents_to_string
-    # raw_input.each do |line|
-    #   if raw_input == ""
+    # raw_message.each do |line|
+    #   if raw_message == ""
     #     input << line.rstrip
     #   else
     #     input << " " + line.rstrip
@@ -44,3 +44,5 @@ class NightWriter
 
 
 end
+
+output_message
