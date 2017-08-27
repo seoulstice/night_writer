@@ -1,5 +1,7 @@
+require './lib/character_map'
 
 class NightWriter
+    attr_accessor :character_map
   attr_reader :raw_message,
               :output_line_1,
               :output_line_2,
@@ -10,6 +12,7 @@ class NightWriter
     @output_line_1 = ""
     @output_line_2 = ""
     @output_line_3 = ""
+    @character_map = CharacterMap.new
   end
 
   def open_file
@@ -25,13 +28,28 @@ class NightWriter
   end
 
   def parse_file_contents_to_string
-    # raw_message.each do |line|
-    #   if raw_message == ""
-    #     input << line.rstrip
-    #   else
-    #     input << " " + line.rstrip
-    #   end
-    # end
+    raw_message.each do |line|
+      if raw_message == ""
+        input << line.rstrip
+      else
+        input << " " + line.rstrip
+      end
+    end
+  end
+
+  def parse_input_into_characters(name)
+    different = name
+    @input = different.split("")
+    @input.each do |letter|
+      if @character_map.letters[letter] != nil
+        output_line_1 << @character_map.letters[letter][0]
+        output_line_2 << @character_map.letters[letter][1]
+        output_line_3 << @character_map.letters[letter][2]
+      end
+    end
+    puts output_line_1
+    puts output_line_2
+    puts output_line_3
   end
 
   def count_output_characters
@@ -45,4 +63,5 @@ class NightWriter
 
 end
 
-output_message
+answer = NightWriter.new
+puts answer.parse_input_into_characters("Hello, World!")
