@@ -1,12 +1,12 @@
 
 class CharacterMap
-  attr_reader :letters,
+  attr_reader :chars,
               :contractions,
               :symbols,
               :numbers
   def initialize
-    @letters = {"a" => ["0.", "..", ".."],
-                "b" => ["0.", "0.", ".."],
+    @chars = {"a" => ["0.", "..", ".."],
+              "b" => ["0.", "0.", ".."],
                 "c" => ["00", "..", ".."],
                 "d" => ["00", ".0", ".."],
                 "e" => ["0.", ".0", ".."],

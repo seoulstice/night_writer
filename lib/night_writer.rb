@@ -1,23 +1,20 @@
 require './lib/character_map'
-require './lib/reader_writer'
 
 class NightWriter
-  attr_accessor :character_map,
-                :reader_writer
+  attr_accessor :character_map
   attr_reader :raw_message,
               :input,
-              :output_line_1,
-              :output_line_2,
-              :output_line_3
+              :line_1,
+              :line_2,
+              :line_3
   def initialize
     @raw_message = ""
     @input = ""
     @split_input = []
-    @output_line_1 = ""
-    @output_line_2 = ""
-    @output_line_3 = ""
+    @line_1 = ""
+    @line_2 = ""
+    @line_3 = ""
     @character_map = CharacterMap.new
-    @reader_writer = ReaderWriter.new
   end
 
   def open_file
@@ -42,52 +39,73 @@ class NightWriter
     end
   end
 
-  def parse_input_into_characters
-    # different = name
-    split_input = @input.split("")
-    split_input.each do |letter|
-      if @character_map.letters[letter] != nil
-        output_line_1 << @character_map.letters[letter][0]
-        output_line_2 << @character_map.letters[letter][1]
-        output_line_3 << @character_map.letters[letter][2]
+  def split_input_into_array
+    @split_input = @input.split("")
+  end
+
+  def translate_each_letter
+    @split_input.each do |letter|
+      if @character_map.chars[letter] != nil
+        line_1 << @character_map.chars[letter][0]
+        line_2 << @character_map.chars[letter][1]
+        line_3 << @character_map.chars[letter][2]
       end
     end
-    # puts output_line_1
-    # puts output_line_2
-    # puts output_line_3
   end
 
   def count_output_characters
-
+    raw_message.chop.length
+    end
   end
 
-  # def limit_length_of_output_line_1
-  #   output_line_1_limited = (output_line_1 + ' ' * 80)[0,80]
+  # def line_1_limited
+  #   output_line_1_limited = (line_1 + ' ' * 80)[0,80]
   #   output_line_1_limited
   # end
   #
-  # def limit_length_of_output_line_2
-  #   output_line_2_limited = (output_line_2 + ' ' * 80)[0,80]
+  # def line_2_limited
+  #   output_line_2_limited = (line_2 + ' ' * 80)[0,80]
   #   output_line_2_limited
   # end
   #
-  # def limit_length_of_output_line_3
-  #   output_line_3_limited = (output_line_3 + ' ' * 80)[0,80]
+  # def line_3_limited
+  #   output_line_3_limited = (line_3 + ' ' * 80)[0,80]
   #   output_line_3_limited
   # end
 
-  def combined_limited_lines
-    limit_length_of_output_line_1 + "\n" + limit_length_of_output_line_2 + "\n" + limit_length_of_output_line_3
+  def combined_limited_lines()
+    # combined = line_1 + "\n" + line_2 + "\n" + line_3
+    # combined.slice(0..79)
+    slice_1 = line_1.slice(0..79)
+    slice_2 = line_2.slice!(0..79)
+    slice_3 = line_3.slice(0..79) 
+
+    require 'pry' ;binding.pry
+    slice_4 = line_1.slice(80..-1)
+
+    combined_slice = slice_1 + "\n" + slice_2 + "\n" + slice_3 + "\n"
 
   end
+
+  def determine_string_length
+    if line_1.length < 80
+      return
+    else line_1.length > 80
+      line_1.slice(0.79)
+
+
+  end
+
+
 
   #.scan(/../) for seperating strings into two character strings
 
 end
 
 answer = NightWriter.new
-answer.reader_writer.open_file
+answer.open_file
 answer.parse_file_contents_to_string
-answer.parse_input_into_characters
-answer.wrap(combined_limited_lines. width=80)
+answer.split_input_into_array
+answer.translate_each_letter
 answer.write_file
+puts "Created '#{ARGV[1]}' containing #{answer.count_output_characters} characters."
