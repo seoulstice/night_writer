@@ -1,7 +1,7 @@
 require './lib/character_map'
 
 class NightWriter
-    attr_accessor :character_map
+  attr_accessor :character_map
   attr_reader :raw_message,
               :output_line_1,
               :output_line_2,
@@ -59,6 +59,8 @@ class NightWriter
   def output_message
     "Created 'braille.txt' containing #{} characters."
   end
+
+  #.scan(/../) for seperating strings into two character strings
 
 
 end

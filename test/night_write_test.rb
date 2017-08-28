@@ -14,8 +14,8 @@ class NightWriterTest < Minitest::Test
   def test_night_writer_has_empty_string
     nw = NightWriter.new
 
-    assert_instance_of String, nw.raw_input
-    assert_equal "", nw.raw_input
+    assert_instance_of String, nw.raw_message
+    assert_equal "", nw.raw_message
   end
 
   def test_it_can_open_file
@@ -24,7 +24,7 @@ class NightWriterTest < Minitest::Test
     nw.open_file
     nw.parse_contents_to_string
 
-    assert_equal "Hello, World!", nw.raw_input
+    assert_equal "Hello, World!", nw.raw_message
   end
 
   def test_it_can_count_characters_of_output
