@@ -58,25 +58,21 @@ class NightWriter
   end
 
   def split_line_one_string_into_80_chars
-
     count = line_1.length
     while count > 0
       slice = line_1.slice!(0..79)
       @line_1_array << slice
       count -= 80
     end
-
   end
 
   def split_line_two_string_into_80_chars
-
     count = line_2.length
     while count > 0
       slice = line_2.slice!(0..79)
       @line_2_array << slice
       count -= 80
     end
-
   end
 
   def split_line_three_string_into_80_chars
@@ -86,7 +82,6 @@ class NightWriter
       @line_3_array << slice
       count -= 80
     end
-
   end
 
   def stack
@@ -102,24 +97,7 @@ class NightWriter
     @output = stack.join("")
   end
 
-  # def combined_limited_lines
-  #   combined << line_1 << "\n" << line_2 << "\n" << line_3
-  #   combined.join("\n")
-  #   array = combined.scan(/.{1,80}/m)
-  # end
 
-  # def stack(line_1, line_2, line_3)
-  #   stack = ""
-  #   until line_1.length == 0
-  #     stack << line_1.slice!(0..79)
-  #     stack << "\n"
-  #     stack << line_2.slice!(0..79)
-  #     stack << "\n"
-  #     stack << line_3.slice!(0..79)
-  #     stack << "\n\n"
-  #   end
-  #   stack.join("")
-  # end
 end
 
   # .scan(/.{1,80}/m)
