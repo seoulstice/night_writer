@@ -1,12 +1,14 @@
 require './lib/character_map'
+# require './lib/reader_writer'
 
 class NightWriter
-  attr_accessor :character_map
-  attr_reader :raw_message,
-              :input,
+  attr_accessor :character_map,
+                :raw_message
+  attr_reader :input,
               :line_1,
               :line_2,
-              :line_3
+              :line_3,
+              :combined
   def initialize
     @raw_message = ""
     @input = ""
@@ -14,7 +16,7 @@ class NightWriter
     @line_1 = ""
     @line_2 = ""
     @line_3 = ""
-    @character_map = CharacterMap.new
+    @output = []
   end
 
   def open_file
@@ -40,67 +42,37 @@ class NightWriter
   end
 
   def split_input_into_array
-    @split_input = @input.split("")
+    @split_input = input.split("")
   end
 
   def translate_each_letter
     @split_input.each do |letter|
-      if @character_map.chars[letter] != nil
-        line_1 << @character_map.chars[letter][0]
-        line_2 << @character_map.chars[letter][1]
-        line_3 << @character_map.chars[letter][2]
+      if CharacterMap.dictionary[letter] != nil
+        line_1 << CharacterMap.dictionary[letter][0]
+        line_2 << CharacterMap.dictionary[letter][1]
+        line_3 << CharacterMap.dictionary[letter][2]
       end
     end
   end
 
   def count_output_characters
     raw_message.chop.length
-    end
   end
 
-  # def line_1_limited
-  #   output_line_1_limited = (line_1 + ' ' * 80)[0,80]
-  #   output_line_1_limited
-  # end
-  #
-  # def line_2_limited
-  #   output_line_2_limited = (line_2 + ' ' * 80)[0,80]
-  #   output_line_2_limited
-  # end
-  #
-  # def line_3_limited
-  #   output_line_3_limited = (line_3 + ' ' * 80)[0,80]
-  #   output_line_3_limited
-  # end
-
-  def combined_limited_lines()
-    # combined = line_1 + "\n" + line_2 + "\n" + line_3
-    # combined.slice(0..79)
-    slice_1 = line_1.slice(0..79)
-    slice_2 = line_2.slice!(0..79)
-    slice_3 = line_3.slice(0..79) 
-
-    require 'pry' ;binding.pry
-    slice_4 = line_1.slice(80..-1)
-
-    combined_slice = slice_1 + "\n" + slice_2 + "\n" + slice_3 + "\n"
-
+  def combined_limited_lines
+    combined = line_1 + line_2 + line_3
+    array = combined.scan(/.{1,80}/m)
   end
+end
 
-  def determine_string_length
-    if line_1.length < 80
-      return
-    else line_1.length > 80
-      line_1.slice(0.79)
+  # .scan(/.{1,80}/m)
 
 
-  end
 
 
 
   #.scan(/../) for seperating strings into two character strings
 
-end
 
 answer = NightWriter.new
 answer.open_file
