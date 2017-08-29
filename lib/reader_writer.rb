@@ -4,7 +4,7 @@ class ReaderWriter
   def reader
     message_file = File.open(ARGV[0], "r")
     @raw_message = message_file.read
-    message_file.close
+    # message_file.close
   end
 
   def write_file

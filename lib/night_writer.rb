@@ -5,22 +5,25 @@ require 'pry'
 class NightWriter
   attr_accessor :character_map,
                 :raw_message
-  attr_reader :input,
-              :line_1,
+  attr_reader :line_1,
               :line_2,
               :line_3,
-              :combined
+              :combined,
+              :output,
+              :line_1_array,
+              :line_2_array,
+              :line_3_array
   def initialize
     @raw_message = ""
-    @input = ""
     @split_input = []
     @line_1 = ""
     @line_2 = ""
     @line_3 = ""
-    @output = []
+    @output = ""
     @line_1_array = []
     @line_2_array = []
     @line_3_array = []
+
 
   end
 
@@ -32,16 +35,15 @@ class NightWriter
 
   def write_file
     output_file = File.open(ARGV[1], "w")
-    output_file.write(stack)
+    output_file.write(@output)
     output_file.close
   end
 
   def split_input_into_array
-    # binding.pry
     @split_input = raw_message.split("")
   end
 
-  def translate_each_letter
+  def translate_each_letter(input)
     @split_input.each do |letter|
       if CharacterMap.dictionary[letter] != nil
         line_1 << CharacterMap.dictionary[letter][0]
@@ -56,36 +58,35 @@ class NightWriter
   end
 
   def split_line_one_string_into_80_chars
-    @line_1_array = []
-    count = line_1.count
+
+    count = line_1.length
     while count > 0
       slice = line_1.slice!(0..79)
-      line_1_array << slice
+      @line_1_array << slice
       count -= 80
     end
-    line_1_array
+
   end
 
   def split_line_two_string_into_80_chars
-    @line_2_array = []
-    count = line_2.count
+
+    count = line_2.length
     while count > 0
       slice = line_2.slice!(0..79)
-      line_2_array << slice
+      @line_2_array << slice
       count -= 80
     end
-    line_2_array
+
   end
 
   def split_line_three_string_into_80_chars
-    @line_3_array = []
-    count = line_3.count
+    count = line_3.length
     while count > 0
       slice = line_3.slice!(0..79)
-      line_3_array << slice
+      @line_3_array << slice
       count -= 80
     end
-    line_3_array
+
   end
 
   def stack
@@ -98,14 +99,13 @@ class NightWriter
       stack << line_3_array.shift
       stack << "\n\n"
     end
-    # binding.pry
-    stack.join("")
+    @output = stack.join("")
   end
 
   # def combined_limited_lines
-  #   # combined << line_1 << "\n" << line_2 << "\n" << line_3
+  #   combined << line_1 << "\n" << line_2 << "\n" << line_3
   #   combined.join("\n")
-    # array = combined.scan(/.{1,80}/m)
+  #   array = combined.scan(/.{1,80}/m)
   # end
 
   # def stack(line_1, line_2, line_3)
@@ -120,10 +120,6 @@ class NightWriter
   #   end
   #   stack.join("")
   # end
-
-
-
-
 end
 
   # .scan(/.{1,80}/m)
@@ -134,12 +130,15 @@ end
 
   #.scan(/../) for seperating strings into two character strings
 
-
+# binding.pry
 answer = NightWriter.new
 answer.open_file
 # answer.parse_file_contents_to_string
 answer.split_input_into_array
-answer.translate_each_letter
+answer.translate_each_letter(@split_input)
+answer.split_line_one_string_into_80_chars
+answer.split_line_two_string_into_80_chars
+answer.split_line_three_string_into_80_chars
 answer.stack
 answer.write_file
 puts "Created '#{ARGV[1]}' containing #{answer.count_output_characters} characters."
