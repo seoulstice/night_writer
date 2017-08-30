@@ -96,19 +96,9 @@ class NightWriter
     end
     @output = stack.join("")
   end
-
-
 end
 
-  # .scan(/.{1,80}/m)
 
-
-
-
-
-  #.scan(/../) for seperating strings into two character strings
-
-# binding.pry
 answer = NightWriter.new
 answer.open_file
 # answer.parse_file_contents_to_string
