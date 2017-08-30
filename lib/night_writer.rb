@@ -1,4 +1,4 @@
-require './lib/character_map'
+require './character_map'
 require 'pry'
 # require './lib/reader_writer'
 
@@ -23,18 +23,18 @@ class NightWriter
     @line_1_array = []
     @line_2_array = []
     @line_3_array = []
-
-
   end
 
   def open_file
-    message_file = File.open(ARGV[0], "r")
+    message_path = File.join(File.dirname(__FILE__), "../#{ARGV[0]}")
+    message_file = File.open(message_path, "r")
     @raw_message = message_file.read
     message_file.close
   end
 
   def write_file
-    output_file = File.open(ARGV[1], "w")
+    output_path = File.join(File.dirname(__FILE__), "../#{ARGV[1]}")
+    output_file = File.open(output_path, "w")
     output_file.write(@output)
     output_file.close
   end
