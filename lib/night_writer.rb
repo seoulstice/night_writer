@@ -1,10 +1,7 @@
-require './character_map'
-require 'pry'
-# require './lib/reader_writer'
+require './lib/character_map'
 
 class NightWriter
-  attr_accessor :character_map,
-                :raw_message
+  attr_accessor :character_map
   attr_reader :line_1,
               :line_2,
               :line_3,
@@ -12,7 +9,8 @@ class NightWriter
               :output,
               :line_1_array,
               :line_2_array,
-              :line_3_array
+              :line_3_array,
+              :raw_message
   def initialize
     @raw_message = ""
     @split_input = []
@@ -54,7 +52,7 @@ class NightWriter
   end
 
   def count_output_characters
-    raw_message.chop.length
+    raw_message.length
   end
 
   def split_line_one_string_into_80_chars
@@ -92,16 +90,14 @@ class NightWriter
       stack << line_2_array.shift
       stack << "\n"
       stack << line_3_array.shift
-      stack << "\n\n"
+      stack << "\n"
     end
     @output = stack.join("")
   end
 end
 
-
 answer = NightWriter.new
 answer.open_file
-# answer.parse_file_contents_to_string
 answer.split_input_into_array
 answer.translate_each_letter(@split_input)
 answer.split_line_one_string_into_80_chars
