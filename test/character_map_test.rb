@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/emoji'
 require './lib/character_map'
-require 'pry'
+
 
 class CharacterMapTest < Minitest::Test
 

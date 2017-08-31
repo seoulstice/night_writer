@@ -1,26 +1,26 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/night_reader'
-require 'pry'
+
 
 class NightReaderTest < Minitest::Test
 
   def test_night_reader_exists
-    skip
+    # skip
     nr = NightReader.new
 
     assert_instance_of NightReader, nr
   end
 
   def test_night_writer_has_empty_input_by_default
-    skip
+    # skip
     nw = NightReader.new
 
     assert_equal "", nw.raw_message
   end
 
   def test_it_can_open_file
-    skip
+    # skip
     nw = NightReader.new
     nw.open_file
     expected = "..0.0.0.0.0.\n..00.00.0..0\n.0....0.0.0.\n"
@@ -29,7 +29,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_it_can_split_raw_message_into_array
-    skip
+    # skip
     nw = NightReader.new
     nw.open_file
     expected = ["..0.0.0.0.0.", "..00.00.0..0", ".0....0.0.0."]
@@ -38,7 +38,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_it_can_separate_lines_array_by_index
-    skip
+    # skip
     nw = NightReader.new
     nw.open_file
     nw.split_input_into_array
@@ -53,7 +53,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_it_can_join_line_arrays
-    skip
+    # skip
     nw = NightReader.new
     nw.open_file
     nw.split_input_into_array
@@ -69,7 +69,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_it_can_split_combined_arrays_into_two_chars
-    skip
+    # skip
     nw = NightReader.new
     nw.open_file
     nw.split_input_into_array
@@ -82,7 +82,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_it_can_translate_braille_to_english_and_detect_capital_letter
-    skip
+    # skip
     nw = NightReader.new
     nw.open_file
     nw.split_input_into_array
@@ -96,7 +96,7 @@ class NightReaderTest < Minitest::Test
   end
 
   def test_it_can_translate_capital_braille
-    skip
+    # skip
     nw = NightReader.new
     nw.open_file
     nw.split_input_into_array
@@ -107,18 +107,5 @@ class NightReaderTest < Minitest::Test
     expected ="Hello"
 
     assert_equal expected, nw.final_output
-  end
-
-  def test_it_can_translate_braille_numbers_to_numbers
-    # skip
-    nw = NightReader.new
-    nw.open_file
-    nw.split_input_into_array
-    nw.separate_lines_into_respective_arrays
-    nw.join_line_arrays
-    nw.split_combined_into_two_character_elements
-    nw.translate_braille_to_english
-
-    assert_equal 
   end
 end

@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/night_writer'
-require 'pry'
+
 
 class NightWriterTest < Minitest::Test
 
