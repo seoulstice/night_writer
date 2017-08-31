@@ -39,7 +39,7 @@ class NightWriter
     @split_input = raw_message.split("")
   end
 
-  def translate_each_letter(input)
+  def translate_each_letter
     @split_input.each do |letter|
       if CharacterMap.dictionary[letter] != nil
         line_1 << CharacterMap.dictionary[letter][0]
@@ -97,7 +97,7 @@ end
 answer = NightWriter.new
 answer.open_file
 answer.split_input_into_array
-answer.translate_each_letter(@split_input)
+answer.translate_each_letter
 answer.split_line_one_string_into_80_chars
 answer.split_line_two_string_into_80_chars
 answer.split_line_three_string_into_80_chars
