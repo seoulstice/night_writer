@@ -1,17 +1,18 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/night_write'
+require './lib/night_reader'
 require 'pry'
 
-class NightWriterTest < Minitest::Test
+class NightReaderTest < Minitest::Test
 
-  def test_night_writer_exists
-    nw = NightWriter.new
+  def test_night_reader_exists
+    nr = NightReader.new
 
-    assert_instance_of NightWriter, nw
+    assert_instance_of NightReader, nr
   end
 
   def test_night_writer_has_empty_string
+    skip
     nw = NightWriter.new
 
     assert_instance_of String, nw.raw_message
@@ -19,6 +20,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_it_can_open_file
+    skip
     nw = NightWriter.new
     nw.open_file
     nw.parse_contents_to_string

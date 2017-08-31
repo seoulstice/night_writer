@@ -24,16 +24,14 @@ class NightWriter
   end
 
   def open_file
-    message_path = File.join(File.dirname(__FILE__), "../#{ARGV[0]}")
-    message_file = File.open(message_path, "r")
+    message_file = File.open(ARGV[0], "r")
     @raw_message = message_file.read
     message_file.close
   end
 
   def write_file
-    output_path = File.join(File.dirname(__FILE__), "../#{ARGV[1]}")
-    output_file = File.open(output_path, "w")
-    output_file.write(@output)
+    output_file = File.open(ARGV[1], "w")
+    output_file.write(output)
     output_file.close
   end
 
