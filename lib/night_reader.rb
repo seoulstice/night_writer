@@ -41,7 +41,7 @@ class NightReader
 
   def split_input_into_array
     @split_input = raw_message.split("\n")
-  end  
+  end
 
   def separate_lines_into_respective_arrays
     @split_input.each_with_index do |line, index|
@@ -50,7 +50,7 @@ class NightReader
       elsif index % 3 == 1
         line_2_array << line
       else index % 3 == 2 || index % 3 == 2/3
-        line_3_array << line 
+        line_3_array << line
       end
     end
   end
@@ -60,25 +60,25 @@ class NightReader
     @line_2_combined = line_2_array.join
     @line_3_combined = line_3_array.join
   end
- 
+
   def split_combined_into_two_character_elements
     one = @line_1_combined.scan(/.{2}/)
     two = @line_2_combined.scan(/.{2}/)
     three = @line_3_combined.scan(/.{2}/)
     @combined = one.zip(two, three)
   end
-  
+
   def translate_braille_to_english
-    @combined.map do |element| 
+    @combined.map do |element|
       output << CharacterMap.braille_to_english[element]
     end
-    capitalized_output = detect_capital_braille(output)
+    capitalized_output = translate_capital_braille(output)
     translate_braille_to_numbers(capitalized_output)
   end
 
-  def detect_capital_braille(output)
+  def translate_capital_braille(output)
     output.each_with_index do |letter, index|
-      if letter == :cap  
+      if letter == :cap
         final_output << output[index + 1].upcase
       elsif letter.upcase == final_output[-1]
         final_output

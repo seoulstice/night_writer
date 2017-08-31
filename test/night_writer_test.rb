@@ -85,7 +85,7 @@ class NightWriterTest < Minitest::Test
                       "...00.....0...0...0...0.0.......0.....0...0.............0.....0...0.0.0.0.0.....",
                       "0.0.0...0.0...0...0.000.0.0.0...0..0............................................",
                       "................................................................"]
-    # binding.pry
+
     assert_equal expected_line_1, nw.line_1_array
     assert_equal expected_line_2, nw.line_2_array
     assert_equal expected_line_3, nw.line_3_array
