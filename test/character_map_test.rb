@@ -6,33 +6,26 @@ require 'pry'
 class CharacterMapTest < Minitest::Test
 
   def test_character_map_exists
-    cm = CharacterMap.new
+    cm = CharacterMap
 
-    assert_instance_of CharacterMap, cm
+    assert_instance_of Module, cm
   end
 
-  def test_character_map_class_has_letters
-    cm = CharacterMap.new
+  def test_character_map_has_english_to_braille_dictionary_hash
+    cm = CharacterMap
 
-    assert_instance_of Hash, cm.letters
+    assert_instance_of Hash, cm.dictionary
   end
 
-  def test_character_map_class_has_symbols
-    cm = CharacterMap.new
+  def test_character_map_has_braille_to_numbers_hash
+    cm = CharacterMap
 
-    assert_instance_of Hash, cm.symbols
+    assert_instance_of Hash, cm.braille_to_numbers
   end
 
-  def test_character_map_class_has_contractions
-    cm = CharacterMap.new
+  def test_character_map_has_braille_to_english_hash
+    cm = CharacterMap
 
-    assert_instance_of Hash, cm.contractions
+    assert_instance_of Hash, cm.braille_to_english
   end
-
-  def test_character_map_class_has_numbers
-    cm = CharacterMap.new
-
-    assert_instance_of Hash, cm.numbers
-  end
-
 end
