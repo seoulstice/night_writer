@@ -119,6 +119,6 @@ class NightReaderTest < Minitest::Test
     nw.split_combined_into_two_character_elements
     nw.translate_braille_to_english
 
-    
+    assert_equal 
   end
 end
