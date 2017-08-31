@@ -1,4 +1,5 @@
 require './lib/character_map'
+require 'pry'
 
 class NightWriter
   attr_accessor :character_map
@@ -10,7 +11,8 @@ class NightWriter
               :line_1_array,
               :line_2_array,
               :line_3_array,
-              :raw_message
+              :raw_message,
+              :additional_output
   def initialize
     @raw_message = ""
     @split_input = []
@@ -18,6 +20,7 @@ class NightWriter
     @line_2 = ""
     @line_3 = ""
     @output = ""
+    @additional_output = []
     @line_1_array = []
     @line_2_array = []
     @line_3_array = []
